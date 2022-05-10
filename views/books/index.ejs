@@ -1,0 +1,41 @@
+<%- include ../layouts/head.ejs %> 
+        <br/>
+        <br/>
+        <a href="/books/create" class="btn btn-primary" type="button">Crear un nuevo libro</a>
+        <br/>
+        <br/>
+        <table class="table table-light">
+            <thead class="thead-light">
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Imagen</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for( let idx = 0; idx < books.length; idx++ ) { %>
+                    <tr>
+                        <td> <%= books[idx].id %>  </td>
+                        <td> <%= books[idx].name %> </td>
+                        <td>
+                            <img class="img-thumbnail" width="100" src="images/<%= books[idx].image %> " alt=""> 
+                        </td>
+                        <td>
+                            <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                                <form class="form-inline" method="get" action="/books/edit/<%= books[idx].id %>">
+                                    <button class="btn btn-warning" type="submit">Editar</button>
+                                </form>
+                            </div>
+                            | 
+                            <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                                <form class="form-inline" method="post" action="/books/delete/<%= books[idx].id %>">
+                                    <button class="btn btn-danger" type="submit">Borrar</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+<%- include ../layouts/foot.ejs %> 
